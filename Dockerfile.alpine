@@ -1,6 +1,7 @@
 FROM alpine:3.14.2
 # Apache + PHP
 RUN  apk add --no-cache \
+        rsync \
         apache2 \
         php7 \
         php7-common \
