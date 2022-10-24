@@ -78,6 +78,10 @@ USER root
 
 VOLUME ["/var/lib/snipeit"]
 
+#Add rsync of files as a cronjob
+ADD crontab.txt /crontab.txt
+RUN /usr/bin/crontab /crontab.txt
+
 # Entrypoints
 COPY docker/entrypoint_alpine.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
