@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Configure cron, change the logic according to your requirement
+if [ "${APP_ENV}" == "production" ]
+then
+    crond -b -L /dev/stdout
+fi
+
 # fix key if needed
 if [ -z "$APP_KEY" ]
 then
@@ -54,6 +60,7 @@ php artisan migrate --force
 php artisan config:clear
 php artisan config:cache
 
+touch /var/www/html/storage/logs/laravel.log
 chown -R apache:root /var/www/html/storage/logs/laravel.log
 
 export APACHE_LOG_DIR=/var/log/apache2

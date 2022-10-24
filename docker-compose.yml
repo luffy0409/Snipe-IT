@@ -10,6 +10,8 @@ services:
     - "8000:80"
     volumes:
     - ./logs:/var/www/html/storage/logs
+#mount workspace to temporary location in the container
+    - ./:/tmp/
     depends_on:
     - mariadb
     - redis
